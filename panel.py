@@ -1,0 +1,1 @@
+Items.UseItemByID(0x0FC1,-1)

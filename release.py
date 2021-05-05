@@ -1,0 +1,1 @@
+Player.ChatSay(73,"i wish to release this")

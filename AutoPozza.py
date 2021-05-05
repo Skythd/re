@@ -1,0 +1,16 @@
+Dress.ChangeList("ecru")
+Dress.DressFStart()
+while Dress.DressStatus(): 
+    Misc.Pause(10)
+Dress.UnDressFStart()
+Misc.Pause(500)
+Dress.UnDressFStop()
+Misc.Pause(100)
+Items.UseItemByID(0x0F09,0x0000)
+Misc.Pause(600)
+Items.UseItemByID(0x0F08,0x0000)
+Misc.Pause(600)
+Dress.ChangeList("ring")
+Dress.DressFStart()
+Misc.Pause(100)
+        

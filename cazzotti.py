@@ -1,0 +1,11 @@
+
+Items.UseItem(0x4062F2B4)
+Misc.Pause(250)
+Player.Run("Down")
+Player.Run("Down")
+Misc.Pause(250)
+Items.UseItem(0x402B4408)
+Misc.Pause(250)
+Player.Run("Up")
+Player.Run("Up")
+Misc.Pause(250)
