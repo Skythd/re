@@ -1,0 +1,35 @@
+from System.Collections.Generic import List
+from System import Byte
+pet = Mobiles.FindBySerial(Target.PromptTarget('Select Pet'))
+fil = Mobiles.Filter()
+fil.RangeMax = 10
+fil.Notorieties = List[Byte](bytes([3,4]))
+
+def discord(mobile):
+    Player.UseSkill('Discordance')
+    Target.WaitForTarget(2000)
+    Target.TargetExecute(mobile)
+    Misc.Pause(500)
+    if Journal.Search("jarring")== True or Journal.Search("discord.")== True :
+        Player.ChatSay(30,'All Kill')
+        Target.WaitForTarget(2000)
+        Target.TargetExecute(mobile)
+        Journal.Clear()  
+        while Mobiles.FindBySerial(mobile.Serial):
+            Misc.Pause(2000)
+        Player.ChatSay(30,'All Follow Me')
+    Misc.Pause(6500)
+
+while True:
+    mobiles = Mobiles.ApplyFilter(fil)
+    if mobiles:
+        mobile = Mobiles.Select(mobiles,'Nearest')
+        discord(mobile)
+    Mobiles.WaitForStats(pet,2000)
+    Misc.SendMessage(pet.Hits)    
+    if Player.Hits == Player.HitsMax and pet.Hits < 21:
+        Spells.CastMagery('Greater Heal')
+        Target.WaitForTarget(4000)
+        Target.TargetExecute(pet)        
+    else:
+        Misc.Pause(3000)

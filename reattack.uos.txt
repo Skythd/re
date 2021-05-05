@@ -1,0 +1,39 @@
+
+// wars side arm  and shield
+if @findobject 'w2' 'any' 'backpack'
+  clearhands 'both'
+  pause 250
+  @equipitem 'w2' 1
+  pause 500
+  equipitem 'shield' 2
+  pause 500
+endif
+if @findtype 0xf8b 2964 'boh' 1
+  pause 250
+  @movetype 0xf8b 'boh' 'backpack' (0 0 0) 'any' 1
+  @ignoreobject 'found'
+endif
+if not buffexists "Consecrate Weapon"
+  cast "Consecrate Weapon"
+  pause 500
+endif
+@setability 'primary' 'on'
+@target! 'enemy'
+attack! 'enemy'
+@getenemy 'criminal' 'enemy' 'murderer' 'gray' 'closest'
+if @findobject 'enemy' 'any' 'ground' 'any' 2
+  while hits 'self' <= '350' 'self' or poisoned 'self'
+    while stam < '250'
+      cast 'divine fury'
+      pause 250
+    endwhile
+    @cancelautotarget
+    @canceltarget
+    bandageself
+    pause 500
+    @setability 'primary' 'on'
+    @target! 'enemy'
+    attack! 'enemy'
+  endwhile
+  endif 
+  replay

@@ -1,0 +1,16 @@
+while not Player.BuffsExist("Vampiric Embrace"):
+    Spells.CastNecro("Vampiric Embrace")
+    Misc.Pause( 500 )
+
+if Player.Hits  < Player.HitsMax * 0.2:
+    Spells.CastBushido("Confidence")
+
+if not Player.BuffsExist("Counter Attack"):
+    Spells.CastBushido("Counter Attack")
+
+enemy = Target.GetTargetFromList( "enemy" )
+if enemy != None:
+    Player.WeaponSecondarySA()
+    Target.SetLast( enemy )
+    Player.AttackLast()
+    Misc.Pause( 500 )

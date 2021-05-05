@@ -1,0 +1,18 @@
+from System.Collections.Generic import List
+from System import Byte
+
+dontAttack = [[0x033D,0x0000],[0x00A4,0x0014]]#### ID LIST OF NOT ATTACKING
+
+fil = Mobiles.Filter()
+fil.Notorieties = List[Byte](bytes([3,4,5,6]))
+   
+while Player.IsGhost == False :
+    mobs = Mobiles.ApplyFilter(fil)
+    if mobs:
+        for mob in mobs:
+            for mobidhue in dontAttack:
+               if mob.Body == mobidhue[0] and mob.Hue == mobidhue[1]:
+                  mobs.Remove(mob) 
+        enemy = Mobiles.Select(mobs,'Nearest')
+        Player.Attack(mob)
+    Misc.Pause(500)

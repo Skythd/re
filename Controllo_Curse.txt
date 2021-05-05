@@ -1,0 +1,6 @@
+if ( #FR = 60 ) && ( #CR = 60 ) && ( #PR = 60 )
+{
+event ExMsg #charID 3 33 Cursato $
+wait 2s
+}
+goto loop

@@ -1,0 +1,37 @@
+from System.Collections.Generic import List
+from System import Byte
+Misc.SendMessage("Attack script started", 99)
+    
+
+def Main():
+    eNumber = 0
+    fil = Mobiles.Filter()
+    fil.Enabled = True
+    fil.RangeMin = 0
+    fil.RangeMax = 6
+    fil.Notorieties = List[Byte](bytes([3,4,5,6]))
+    while not Player.IsGhost and Player.Visible:
+        enemies = Mobiles.ApplyFilter(fil)
+        
+        eNumber = len(enemies)
+        
+        enemy = Mobiles.Select(enemies,'Nearest')
+        
+        if eNumber <= 2:
+            eNumber = 0
+            if not Player.HasSpecial:
+                Player.WeaponPrimarySA()
+            Player.InvokeVirtue("Honor")
+            Target.WaitForTarget(1000)
+            Target.TargetExecute(enemy)
+            Player.Attack(enemy)
+        if eNumber >= 3:
+            eNumber = 0
+            if not Player.SpellIsEnabled('Momentum Strike'):
+                Spells.CastBushido('Momentum Strike')
+            Player.InvokeVirtue("Honor")
+            Target.WaitForTarget(1000)
+            Target.TargetExecute(enemy)
+            Player.Attack(enemy)
+        Misc.Pause(250)
+Main()

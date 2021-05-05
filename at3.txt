@@ -1,0 +1,16 @@
+from System.Collections.Generic import List #not used here but used to filter by Mobile ID
+from System import Byte  #allows to select by noto here
+
+fil = Mobiles.Filter()
+fil.RangeMax = 6
+fil.Notorieties = List[Byte](bytes([3,4,5,6])) #noto grey grey red orang
+
+while True: # play until you stop it
+    mobs = Mobiles.ApplyFilter(fil) #creates list of mobiles from filter
+    if len(mobs) > 0: # how many mobiles the filter finds
+        nearest = Mobiles.Select(mobs,'Nearest') #select nearest in filter results
+        while Mobiles.FindBySerial(nearest.Serial): #attack it until its gone
+            Player.Attack(nearest)
+            Misc.Pause(1000)
+
+    Misc.Pause(800)

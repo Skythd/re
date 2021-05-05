@@ -1,0 +1,27 @@
+last_enemy = None
+while True:
+    #
+    enemy = Target.GetTargetFromList("strongest")
+    if enemy:
+        #Misc.SendMessage("{} enemies within 10 squares".format(len(enemies)))
+        Player.SetWarMode(True)
+        if enemy.Name in dont_kill  or enemy.Body in ignore_type:
+            Misc.IgnoreObject(enemy.Serial)
+            enemy = None
+        # ignore energy vortex
+        if enemy and enemy.Body == 0x00A4 and enemy.Hue == 0:    
+            Misc.IgnoreObject(enemy.Serial)
+            enemy = None
+        #if enemy == last_enemy or Player.InRangeMobile(enemy, 3):
+            #pass
+        #else:
+            #Player.PathFindTo(enemy.Position.X, enemy.Position.Y, enemy.Position.Z)
+            #last_enemy = enemy   
+        if enemy != None:
+            Player.Attack(enemy)
+            if last_attack_serial != enemy.Serial or time.time() > last_attack_msg + 5:
+                Mobiles.Message(enemy, 5, "Attacking 0x{:08x}".format(enemy.Serial))
+                last_attack_msg = time.time()
+                last_attack_serial = enemy.Serial
+            Player.Attack(enemy.Serial)   
+    #
